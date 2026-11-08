@@ -1,0 +1,28 @@
+name: Build and Upload Artifact
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Step to build your project (Example: Node.js / React / Python / Java)
+      - name: Build Project
+        run: |
+          mkdir build
+          echo "Build finished successfully" > build/output.txt
+
+      # Step to upload the generated file/folder as an artifact
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-build-artifact    # Name of the downloadable artifact
+          path: build/                # File or folder to save as an artifact
+          retention-days: 7           # How long GitHub keeps the artifact
